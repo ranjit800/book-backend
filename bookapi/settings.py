@@ -3,18 +3,18 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# ✅ Secret key from environment (fallback only for dev)
+# ✅ Secret key from environment (fallback for local dev)
 SECRET_KEY = os.environ.get('SECRET_KEY', 'your-dev-secret')
 
 # ✅ DEBUG toggle via environment
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-# ✅ Allowed hosts for local + Render
+# ✅ Allowed hosts: Local + Render backend
 ALLOWED_HOSTS = [
-    '127.0.0.1',
-    'localhost',
-    '10.0.2.2',
-    'mypustak-backend.onrender.com',  # Update this if Render gives a different domain
+    "127.0.0.1",
+    "localhost",
+    "10.0.2.2",
+    "book-backend-hk0w.onrender.com",  # ✅ Exact backend Render domain
 ]
 
 # ✅ Installed apps
@@ -30,8 +30,9 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 
+# ✅ Middleware: corsheaders first
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',  # 🔼 should be first
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -60,7 +61,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'bookapi.wsgi.application'
 
-# ✅ SQLite DB
+# ✅ SQLite for now
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -68,7 +69,7 @@ DATABASES = {
     }
 }
 
-# ✅ Password validators
+# ✅ Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
@@ -87,8 +88,8 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# ✅ CORS: allow frontend URLs
+# ✅ CORS allowed origins: localhost + Netlify
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8081",  # Expo Web (dev)
-    "https://mypustak-book-app.netlify.app",  # Deployed frontend
+    "http://localhost:8081",  # Web dev via Expo
+    "https://mypustak-book-app.netlify.app",  # ✅ Deployed frontend
 ]
