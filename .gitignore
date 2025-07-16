@@ -1,0 +1,29 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+env/
+venv/
+ENV/
+env.bak/
+*.env
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+
+# VSCode / IDE
+.vscode/
+.idea/
+
+# Python eggs
+*.egg-info/
+dist/
+build/
+
+# System files
+.DS_Store
+Thumbs.db
